@@ -3,16 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>โปรไฟล์ส่วนตัว</title>
+    <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="Giikatoo's personal page: hobbies, interests, and social links.">
+    <title>Giikatoo</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/script.js" defer></script>
 </head>
 <body>
-    <div class="card">
-        <h1 id="greeting">กำลังโหลด...</h1>
-        <button id="actionBtn">คลิกเพื่อทักทาย</button>
-    </div>
+    <main>
+        <section class="profile-page" id="home" aria-label="Personal profile">
+            <header class="profile-intro">
+                <div class="avatar-doodle" role="img">
+                    <img src="images/giikatoo-pfp.png" alt="Giikatoo pfp" class="profile-img">
+                    <span>this is me</span>
+                </div>
 
-    <!-- หมายเหตุ: ใน HTML เราจะเรียกไฟล์ .js เสมอ เพราะเบราว์เซอร์อ่านไฟล์นี้ -->
-    <script src="assets/js/script.js"></script>
+                <a class="mail-stamp" href="mailto:rahut.n.contact@gmail.com" aria-label="ส่งอีเมลถึง Giikatoo">
+                    <span class="mail-note">This button<br>looks so interesting</span>
+                    <svg viewBox="0 0 64 48" aria-hidden="true">
+                        <path d="M3 5h58v38H3zM4 7l28 21L60 7" />
+                    </svg>
+                </a>
+            </header>
+
+            <div class="profile-layout">
+                <div class="profile-sidebar">
+                    <article class="profile-paper" aria-labelledby="profile-name">
+                        <span class="paper-fold" aria-hidden="true"></span>
+                        <h1 id="profile-name">Giikatoo</h1>
+                        <p>you can call me Ooh (อู๋)</p>
+                        <p>male</p>
+                        <p><span id="age" data-birthdate="2006-05-18">calculatin g...</span> old</p>
+                    </article>
+
+                    <nav class="social-links" aria-label="Social and contacts">
+                        <h2>[ Socials &amp; Contacts ]</h2>
+                        <a href="mailto:rahut.n.contact@gmail.com">Email <span aria-hidden="true">↗</span></a>
+                        <a href="https://www.facebook.com/giikatoo.nop" target="_blank" rel="noopener noreferrer">Facebook <span aria-hidden="true">↗</span></a>
+                        <a href="https://github.com/Giikatoo" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+                        <a href="https://x.com/Giikatoo" target="_blank" rel="noopener noreferrer">X <span aria-hidden="true">↗</span></a>
+                        <a href="https://youtube.com/@giikatoo" target="_blank" rel="noopener noreferrer">YouTube <span aria-hidden="true">↗</span></a>
+                    </nav>
+                </div>
+
+                <section class="desktop-window" aria-labelledby="window-title">
+                    <header class="window-titlebar">
+                        <h2 id="window-title">My Hobby &amp; Interest</h2>
+                        <span class="window-controls" aria-hidden="true">− □ ×</span>
+                    </header>
+                    <div class="window-content">
+                        <ul>
+                            <li>— Drawing ( my passion to live )</li>
+                            <li>— IdentityV or Valorant 24/7</li>
+                            <li>— 2D Game development and design</li>
+                            <li>— Software Engineering/ Development</li>
+                            <li>— Anime, Music, always</li>
+                            <li>— Academic, Edtech</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+        <section class="deep-interests section-rule" aria-labelledby="deep-interests-title">
+            <h2 id="deep-interests-title">Some of my deep interests</h2>
+            <p>Art, technology, games, and all the tiny details that make the world interesting.</p>
+        </section>
+
+    </main>
 </body>
 </html>

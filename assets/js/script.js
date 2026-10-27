@@ -1,18 +1,48 @@
 "use strict";
-// สร้างข้อมูลจำลองโดยอิงตาม Interface
-const myProfile = {
-    name: "นักพัฒนาหน้าใหม่",
-    role: "Frontend Developer",
-    level: 1
-};
-// ดึง HTML Element มาใช้งาน พร้อมระบุ Type ชัดเจน
-const greetingElement = document.getElementById("greeting");
-const actionBtn = document.getElementById("actionBtn");
-// แสดงผลข้อความบนหน้าเว็บ
-if (greetingElement) {
-    greetingElement.textContent = `ยินดีต้อนรับคุณ ${myProfile.name} (${myProfile.role}) สู่โลก TypeScript! 🚀`;
+
+const ageElement = document.getElementById("age");
+
+if (!(ageElement instanceof HTMLSpanElement)) {
+    throw new Error('Expected a <span id="age"> element to display the calculated age.');
 }
-// เพิ่ม Event ฟังเสียงคลิกปุ่ม
-actionBtn?.addEventListener("click", () => {
-    alert(`ยินดีด้วย! คุณคลิกปุ่มสำเร็จ (Level: ${myProfile.level})`);
-});
+
+const birthdate = ageElement.dataset.birthdate;
+const birthdateParts = birthdate?.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+
+if (!birthdateParts) {
+    throw new Error('The age element must have a valid YYYY-MM-DD data-birthdate.');
+}
+
+const [_, year, month, day] = birthdateParts;
+const birthday = new Date(Number(year), Number(month) - 1, Number(day));
+const today = new Date();
+
+let years = today.getFullYear() - birthday.getFullYear();
+let months = today.getMonth() - birthday.getMonth();
+let days = today.getDate() - birthday.getDate();
+
+// Adjust for negative values
+if (days < 0) {
+    days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+    months--;
+}
+
+if (months < 0) {
+    months += 12;
+    years--;
+}
+
+// check if it is a 1
+if (days === 1) {
+    days = "a day";
+} else {
+    days = `${days} days`;
+}
+
+if (months === 1) {
+    months = "a month";
+} else {
+    months = `${months} months`;
+}
+
+ageElement.textContent = `${years} years & ${months} & ${days}`;

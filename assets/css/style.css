@@ -1,11 +1,12 @@
 :root {
     color-scheme: light;
-    --paper: #fffefa;
-    --ink: #292a30;
-    --muted: #777984;
-    --blue: #8496e8;
-    --line: #dedee2;
-    --sketch: 'Comic Sans MS', 'Segoe Print', cursive;
+    --paper: #ffffff;
+    --surface: #ffffff;
+    --ink: #293a35;
+    --muted: #718078;
+    --accent: #52766a;
+    --accent-soft: #e6eee8;
+    --line: #2fd5c7;
     --body: 'Trebuchet MS', Arial, sans-serif;
 }
 
@@ -18,13 +19,15 @@ html {
 }
 
 body {
-    position: relative;
     min-height: 100vh;
     margin: 0;
-    overflow-x: hidden;
     background: var(--paper);
     color: var(--ink);
     font-family: var(--body);
+}
+
+main {
+    padding: 46px 0 0;
 }
 
 .profile-page,
@@ -35,105 +38,80 @@ footer {
 }
 
 .profile-page {
-    overflow-x: clip;
-    padding: 46px 8% 0;
+    padding: 42px 7% 0;
 }
 
 .profile-intro {
     display: flex;
-    min-height: 174px;
+    min-height: 168px;
     align-items: flex-start;
     justify-content: space-between;
 }
 
 .avatar-doodle {
-    position: relative;
-    width: 230px;
-    height: 158px;
-    transform: rotate(-4deg);
+    display: flex;
+    align-items: center;
+    gap: 18px;
 }
 
-.avatar-doodle svg {
-    width: 170px;
-    height: 142px;
-    overflow: visible;
-    fill: none;
-    stroke: var(--ink);
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-width: 3;
-}
-
-.avatar-doodle svg circle {
-    fill: var(--ink);
-    stroke: none;
+.profile-img {
+    display: block;
+    width: 138px;
+    height: 138px;
+    border: 1px solid var(--line);
+    background: var(--surface);
+    object-fit: contain;
 }
 
 .avatar-doodle > span {
-    position: absolute;
-    right: -8px;
-    bottom: 20px;
-    font-family: var(--sketch);
-    font-size: 19px;
-    transform: rotate(5deg);
+    color: var(--muted);
+    font-size: 15px;
 }
 
 .mail-stamp {
-    position: relative;
     display: grid;
+    justify-items: end;
     width: 215px;
     min-height: 135px;
-    justify-items: end;
     color: var(--ink);
     text-decoration: none;
 }
 
 .mail-note {
     margin: 0 0 3px 28px;
-    font-family: var(--sketch);
-    font-size: 19px;
-    line-height: 1.15;
-    transform: rotate(-7deg);
+    color: var(--accent);
+    font-size: 16px;
+    line-height: 1.4;
 }
 
 .mail-stamp svg {
-    width: 72px;
-    height: 54px;
+    width: 68px;
+    height: 52px;
     margin-right: 7px;
-    fill: var(--paper);
-    stroke: var(--ink);
+    fill: var(--surface);
+    stroke: var(--accent);
     stroke-linejoin: round;
-    stroke-width: 3;
+    stroke-width: 2.5;
     transition: transform 160ms ease;
 }
 
 .mail-stamp:hover svg,
 .mail-stamp:focus-visible svg {
-    transform: rotate(-8deg) translateY(-3px);
+    transform: translateY(-3px);
 }
 
 .mail-stamp:focus-visible,
 .social-links a:focus-visible {
-    outline: 2px dashed var(--blue);
-    outline-offset: 5px;
-}
-
-.mail-spark {
-    position: absolute;
-    right: 0;
-    bottom: -1px;
-    color: var(--blue);
-    font-family: var(--sketch);
-    font-size: 37px;
-    transform: rotate(-26deg);
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
 }
 
 .profile-layout {
     display: grid;
     grid-template-columns: minmax(270px, 0.9fr) minmax(330px, 1fr);
     align-items: start;
-    gap: clamp(35px, 7vw, 85px);
-    padding: 0 0 93px;
+    gap: clamp(35px, 7vw, 78px);
+    padding: 0 0 83px;
 }
 
 .profile-sidebar {
@@ -141,67 +119,46 @@ footer {
 }
 
 .profile-paper {
-    position: relative;
     min-height: 180px;
-    padding: 27px 31px 22px;
-    border: 2px solid var(--ink);
-    transform: rotate(-2deg);
-}
-
-.profile-paper::before {
-    position: absolute;
-    top: -2px;
-    right: -2px;
-    width: 43px;
-    height: 40px;
-    background: linear-gradient(45deg, var(--paper) 48%, var(--ink) 49%, var(--ink) 52%, transparent 53%);
-    content: '';
+    padding: 25px 28px;
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--accent);
+    background: var(--surface);
 }
 
 .profile-paper h1 {
-    margin: 0 0 1px;
-    font-family: var(--sketch);
-    font-size: clamp(29px, 4vw, 39px);
-    font-weight: 400;
-    letter-spacing: -0.07em;
+    margin: 0 0 8px;
+    color: var(--accent);
+    font-size: clamp(29px, 4vw, 38px);
+    font-weight: 600;
+    letter-spacing: -0.04em;
 }
 
 .profile-paper p {
-    margin: 2px 0;
-    font-family: var(--sketch);
-    font-size: 17px;
+    margin: 5px 0;
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.65;
 }
 
 .profile-paper time {
     margin-left: 8px;
+    color: var(--muted);
     font-size: 14px;
 }
 
 .social-links {
     display: grid;
     justify-items: start;
-    gap: 5px;
-    padding: 35px 22px 0;
+    gap: 4px;
+    padding: 30px 22px 0;
 }
 
 .social-links h2 {
-    position: relative;
-    margin: 0 0 5px;
-    font-family: var(--sketch);
-    font-size: 23px;
-    font-weight: 400;
-}
-
-.social-links h2::before {
-    position: absolute;
-    top: 50%;
-    left: -18px;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--ink);
-    content: '';
-    transform: translateY(-50%);
+    margin: 0 0 8px;
+    color: var(--accent);
+    font-size: 17px;
+    font-weight: 600;
 }
 
 .social-links a {
@@ -210,23 +167,21 @@ footer {
     align-items: center;
     gap: 9px;
     color: var(--ink);
-    font-family: var(--sketch);
-    font-size: 20px;
+    font-size: 15px;
     text-decoration-color: transparent;
     text-underline-offset: 4px;
     transition: color 140ms ease, text-decoration-color 140ms ease;
 }
 
 .social-links a span {
-    color: var(--blue);
-    font-family: var(--body);
+    color: var(--accent);
     font-size: 12px;
     opacity: 0;
     transition: opacity 140ms ease;
 }
 
 .social-links a:hover {
-    color: #5368c6;
+    color: var(--accent);
     text-decoration-color: currentColor;
 }
 
@@ -237,91 +192,81 @@ footer {
 
 .desktop-window {
     min-height: 385px;
-    border: 2px solid var(--ink);
-    box-shadow: 2px 3px 0 rgba(41, 42, 48, 0.08);
-    transform: rotate(0.7deg);
+    border: 1px solid var(--line);
+    background: var(--surface);
 }
 
 .window-titlebar {
     display: flex;
-    min-height: 48px;
+    min-height: 49px;
     align-items: center;
     justify-content: space-between;
-    padding: 0 12px;
-    border-bottom: 2px solid var(--ink);
+    padding: 0 15px;
+    border-bottom: 1px solid var(--line);
+    background: var(--accent-soft);
 }
 
 .window-titlebar h2 {
     overflow: hidden;
     margin: 0;
-    font-family: var(--sketch);
-    font-size: clamp(18px, 2.4vw, 24px);
-    font-weight: 400;
+    color: var(--accent);
+    font-size: clamp(18px, 2.4vw, 22px);
+    font-weight: 600;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
 .window-controls {
     flex-shrink: 0;
+    color: var(--muted);
     font-family: Arial, sans-serif;
-    font-size: 19px;
+    font-size: 18px;
     letter-spacing: 4px;
 }
 
 .window-content {
-    padding: 26px 26px 24px;
-    font-family: var(--sketch);
-    font-size: 17px;
-}
-
-.window-intro {
-    margin: 0 0 19px;
-    color: var(--muted);
+    padding: 26px 24px;
+    font-size: 15px;
+    line-height: 1.8;
 }
 
 .window-content ul {
     display: grid;
-    gap: 17px;
+    gap: 14px;
     padding: 0;
     margin: 0;
+    color: var(--ink);
     list-style: none;
 }
 
 .window-content li {
-    display: flex;
-    align-items: center;
-    gap: 13px;
+    padding-bottom: 11px;
+    border-bottom: 1px solid var(--line);
 }
 
-.window-content li span {
-    color: var(--blue);
-}
-
-.window-footnote {
-    margin: 32px 0 0;
-    color: var(--muted);
-    font-size: 14px;
-    text-align: right;
+.window-content li:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
 }
 
 .deep-interests {
     padding: 20px 4% 72px;
-    border-top: 3px solid var(--ink);
+    border-top: 2px solid var(--accent);
 }
 
 .deep-interests h2 {
     margin: 0;
-    font-family: var(--sketch);
-    font-size: clamp(26px, 4vw, 38px);
-    font-weight: 400;
+    color: var(--accent);
+    font-size: clamp(26px, 4vw, 36px);
+    font-weight: 500;
+    letter-spacing: -0.03em;
 }
 
 .deep-interests p {
     max-width: 540px;
-    margin: 8px 0 0;
+    margin: 9px 0 0;
     color: var(--muted);
-    font-family: var(--sketch);
-    font-size: 17px;
+    font-size: 15px;
     line-height: 1.7;
 }
 
@@ -332,6 +277,10 @@ footer {
 }
 
 @media (max-width: 700px) {
+    main {
+        padding-top: 24px;
+    }
+
     .profile-page,
     .deep-interests,
     footer {
@@ -346,14 +295,17 @@ footer {
         min-height: 145px;
     }
 
+    .profile-img {
+        width: 112px;
+        height: 112px;
+    }
+
     .avatar-doodle {
-        width: 190px;
-        transform: scale(0.88) rotate(-4deg);
-        transform-origin: top left;
+        gap: 12px;
     }
 
     .avatar-doodle > span {
-        right: 0;
+        font-size: 13px;
     }
 
     .mail-stamp {
@@ -362,18 +314,18 @@ footer {
     }
 
     .mail-note {
-        font-size: 15px;
+        font-size: 14px;
     }
 
     .mail-stamp svg {
-        width: 62px;
+        width: 60px;
         height: 46px;
     }
 
     .profile-layout {
         grid-template-columns: 1fr;
-        gap: 38px;
-        padding: 0 0 60px;
+        gap: 34px;
+        padding-bottom: 58px;
     }
 
     .profile-sidebar {
@@ -386,7 +338,7 @@ footer {
     }
 
     .social-links {
-        padding-top: 29px;
+        padding-top: 25px;
     }
 
     .desktop-window {
@@ -396,12 +348,12 @@ footer {
     }
 
     .window-titlebar h2 {
-        font-size: 21px;
+        font-size: 20px;
     }
 
     .window-content {
-        padding: 23px 20px;
-        font-size: 16px;
+        padding: 22px 18px;
+        font-size: 14px;
     }
 
     .deep-interests {
@@ -421,37 +373,41 @@ footer {
     }
 
     .profile-intro {
-        min-height: 135px;
+        min-height: 125px;
+    }
+
+    .profile-img {
+        width: 88px;
+        height: 88px;
     }
 
     .avatar-doodle {
-        width: 160px;
-        transform: scale(0.76) rotate(-4deg);
+        gap: 8px;
     }
 
     .avatar-doodle > span {
-        right: -14px;
-        font-size: 17px;
+        max-width: 55px;
+        font-size: 12px;
     }
 
     .mail-stamp {
-        width: 130px;
+        width: 125px;
     }
 
     .mail-note {
-        margin-left: 8px;
-        font-size: 13px;
+        margin-left: 7px;
+        font-size: 12px;
     }
 
     .profile-paper {
-        padding-right: 22px;
-        padding-left: 24px;
+        padding-right: 20px;
+        padding-left: 22px;
     }
 
     .window-content {
-        padding-right: 14px;
-        padding-left: 14px;
-        font-size: 14px;
+        padding-right: 13px;
+        padding-left: 13px;
+        font-size: 13px;
     }
 }
 

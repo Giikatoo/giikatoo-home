@@ -1,13 +1,16 @@
 :root {
     color-scheme: light;
-    --paper: #ffffff;
-    --surface: #ffffff;
-    --ink: #293a35;
-    --muted: #718078;
-    --accent: #52766a;
-    --accent-soft: #e6eee8;
-    --line: #2fd5c7;
+    --paper: #252525;
+    --surface: #252525;
+    --ink: #ffffff;
+    --muted: #ffffff;
+    --accent: #92ebe5;
+    --accent-soft: #387D78;
+    --line: #387D78;
     --body: 'Trebuchet MS', Arial, sans-serif;
+    --profile-top-gap: 30px;
+    --hobby-top-offset: 90px;
+    --social-indent: 50px;
 }
 
 * {
@@ -48,24 +51,13 @@ footer {
     justify-content: space-between;
 }
 
-.avatar-doodle {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-}
-
 .profile-img {
     display: block;
-    width: 138px;
-    height: 138px;
-    border: 1px solid var(--line);
+    width: 420px;
+    height: 240px;
+    border-radius: 25px;
     background: var(--surface);
     object-fit: contain;
-}
-
-.avatar-doodle > span {
-    color: var(--muted);
-    font-size: 15px;
 }
 
 .mail-stamp {
@@ -115,14 +107,13 @@ footer {
 }
 
 .profile-sidebar {
-    padding-top: 4px;
+    padding-top: var(--profile-top-gap);
 }
 
 .profile-paper {
     min-height: 180px;
     padding: 25px 28px;
     border: 1px solid var(--line);
-    border-left: 4px solid var(--accent);
     background: var(--surface);
 }
 
@@ -151,7 +142,7 @@ footer {
     display: grid;
     justify-items: start;
     gap: 4px;
-    padding: 30px 22px 0;
+    padding: 30px 22px 0 var(--social-indent);
 }
 
 .social-links h2 {
@@ -191,9 +182,10 @@ footer {
 }
 
 .desktop-window {
-    min-height: 385px;
+    min-height: 100px;
     border: 1px solid var(--line);
     background: var(--surface);
+    transform: translateY(calc(-1 * var(--hobby-top-offset)));
 }
 
 .window-titlebar {
@@ -239,16 +231,6 @@ footer {
     list-style: none;
 }
 
-.window-content li {
-    padding-bottom: 11px;
-    border-bottom: 1px solid var(--line);
-}
-
-.window-content li:last-child {
-    padding-bottom: 0;
-    border-bottom: 0;
-}
-
 .deep-interests {
     padding: 20px 4% 72px;
     border-top: 2px solid var(--accent);
@@ -277,6 +259,12 @@ footer {
 }
 
 @media (max-width: 700px) {
+    :root {
+        --profile-top-gap: 26px;
+        --hobby-top-offset: 90px;
+        --social-indent: 40px;
+    }
+
     main {
         padding-top: 24px;
     }
@@ -284,7 +272,7 @@ footer {
     .profile-page,
     .deep-interests,
     footer {
-        width: min(100% - 36px, 530px);
+        width: min(100% - 36px, 720px);
     }
 
     .profile-page {
@@ -296,16 +284,8 @@ footer {
     }
 
     .profile-img {
-        width: 112px;
-        height: 112px;
-    }
-
-    .avatar-doodle {
-        gap: 12px;
-    }
-
-    .avatar-doodle > span {
-        font-size: 13px;
+        width: 350px;
+        height: 200px;
     }
 
     .mail-stamp {
@@ -362,6 +342,11 @@ footer {
 }
 
 @media (max-width: 380px) {
+    :root {
+        --profile-top-gap: 20px;
+        --social-indent: 18px;
+    }
+
     .profile-page,
     .deep-interests,
     footer {
@@ -377,17 +362,8 @@ footer {
     }
 
     .profile-img {
-        width: 88px;
-        height: 88px;
-    }
-
-    .avatar-doodle {
-        gap: 8px;
-    }
-
-    .avatar-doodle > span {
-        max-width: 55px;
-        font-size: 12px;
+        width: 210px;
+        height: 120px;
     }
 
     .mail-stamp {

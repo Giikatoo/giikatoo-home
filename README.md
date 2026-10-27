@@ -35,15 +35,20 @@
 
 - แก้รายการใน `<ul>` ภายใน `<div class="window-content">` เพื่อใส่ความสนใจของคุณ
 - เปลี่ยนข้อความ `Some of my deep interests` ด้านล่างได้ตามต้องการ
-- รูปตัวการ์ตูนด้านบนเป็น SVG วาดใน HTML; สามารถแก้เส้นในแท็ก `<svg>` หรือแทนด้วยรูปของตัวเอง
+- เปลี่ยนรูปโปรไฟล์ได้ที่ `src` ของ `<img class="profile-img">` ใน `index.html` โดยเก็บรูปไว้ใน `assets/images/` และเขียน path ให้ตรงกับตำแหน่งไฟล์
 
 ### เปลี่ยนหน้าตา
 
 แก้ `assets/css/style.css`:
 
 - สีหลักอยู่ที่ตัวแปร `--paper`, `--ink` และ `--blue` ด้านบนไฟล์
-- `@media (max-width: 700px)` และ `@media (max-width: 380px)` กำหนดการจัดวางบนมือถือ
-- คลาส `.profile-paper`, `.social-links` และ `.desktop-window` ใช้ปรับส่วนต่าง ๆ ให้ตรงกับชื่อ
+- `.profile-layout` ใช้คอลัมน์สองฝั่งบนจอใหญ่ และเปลี่ยนเป็นคอลัมน์เดียวเมื่อหน้าจอกว้างไม่เกิน `700px`
+- `.profile-img` ปรับความมนของมุมรูปได้ที่ `border-radius` และขนาดรูปเปลี่ยนตาม breakpoint
+- `@media (max-width: 700px)` และ `@media (max-width: 380px)` ใช้จัดวางสำหรับมือถือและมือถือจอเล็ก
+- ระยะระหว่างรูปกับข้อมูลโปรไฟล์ปรับด้วย `--profile-top-gap`
+- ระยะเลื่อนหน้าต่าง Hobby & Interest ขึ้น/ลง ปรับด้วย `--hobby-top-offset`; ค่า `0px` คือไม่เลื่อน
+- ตำแหน่ง Socials & Contacts จากขอบซ้ายของคอลัมน์ปรับด้วย `--social-indent`
+- `.profile-paper`, `.social-links` และ `.desktop-window` ใช้ปรับหน้าตาแต่ละส่วน
 
 ## โครงสร้าง
 

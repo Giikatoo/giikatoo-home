@@ -4,7 +4,8 @@
     --text: #ffffff;
     --accent: #92ebe5;
     --teal: #387D78;
-    --pulse: #ff6f22;
+    --pulse: #E67E5C;
+    --darkpulse: #b03412;
     --body: 'Trebuchet MS', Arial, sans-serif;
     --profile-top-gap: 30px;
     --hobby-top-offset: 90px;
@@ -28,40 +29,45 @@ body {
 }
 
 main {
-    padding: 46px 0 0;
+    padding: 30px 0 0;
 }
 
 .page-contents {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px 28px;
+    gap: 8px;
     width: min(1120px, calc(100% - 88px));
-    margin: 0 auto 34px;
+    margin: 0 auto 28px;
     padding: 0 7%;
+    border-bottom: 1px solid var(--teal);
 }
 
 .page-contents a {
+    padding: 10px 15px;
     color: var(--accent);
-    font-size: 15px;
-    text-decoration: underline;
-    text-underline-offset: 4px;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    text-transform: lowercase;
+    transition: background 140ms ease, color 140ms ease;
 }
 
 .page-contents a:hover,
 .page-contents a:focus-visible {
+    background: var(--teal);
     color: var(--text);
 }
 
 .profile-page,
-.deep-interests,
+.favorites,
 .commission-price {
-    width: min(1120px, calc(100% - 88px));
+    width: min(1400px, calc(100% - 64px));
     margin: 0 auto;
 }
 
 .profile-page {
     scroll-margin-top: 24px;
-    padding: 42px 7% 0;
+    padding: 35px 7% 0;
 }
 
 .profile-intro {
@@ -254,48 +260,171 @@ main {
     list-style: none;
 }
 
-.deep-interests {
-    scroll-margin-top: 24px;
-    padding: 20px 4% 72px;
-    border-top: 2px solid var(--accent);
-}
-
-.deep-interests h2 {
-    margin: 0;
-    color: var(--accent);
-    font-size: clamp(26px, 4vw, 36px);
-    font-weight: 500;
-    letter-spacing: -0.03em;
-}
-
-.deep-interests p {
-    max-width: 540px;
-    margin: 9px 0 0;
-    color: var(--text);
-    font-size: 15px;
-    line-height: 1.7;
-}
-
 .commission-price {
     scroll-margin-top: 24px;
-    padding: 20px 4% 72px;
-    border-top: 2px solid var(--accent);
+    width: 100%;
+    max-width: none;
+    padding: 0;
+    background: var(--accent);
+    color: var(--background);
+    transform: skewY(-3deg);
+    transform-origin: left center;
+}
+
+.commission-inner {
+    position: relative;
+    width: min(1120px, calc(100% - 88px));
+    min-height: 400px;
+    margin: 0 auto;
+    padding: 64px 7% 78px;
+    transform: skewY(3deg);
+}
+
+.commission-price .section-kicker,
+.commission-price h2,
+.commission-price p {
+    color: var(--background);
 }
 
 .commission-price h2 {
+    position: relative;
+    display: inline-block;
     margin: 0;
-    color: var(--accent);
     font-size: clamp(26px, 4vw, 36px);
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: -0.03em;
 }
 
 .commission-price p {
     max-width: 540px;
     margin: 9px 0 0;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+table {
+    margin-top: 15px;
+    margin-left: 30px;
+    width: 100%;
+    border-collapse: collapse;
+    font-weight: 600;
+    font-family: var(--body);
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border: none;
+    color: var(--background);
+}
+
+th {
+    font-size: 20px;
+    color: var(--teal);
+}
+
+.cms-section {
+    margin-bottom: 24px;
+}
+
+/* หัวข้อ (Details / Terms of Service) */
+.cms-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.cms-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.cms-list li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+.cms-list li::before {
+    content: "•";
+    position: absolute;
+    left: 4px;
+    color: var(--teal);
+    font-weight: bold;
+}
+
+.cms-list strong {
+    color: #1e293b;
+}
+
+/* ข้อความปิดท้ายล่างสุด */
+.cms-footer-message {
+    margin-top: 20px;
+    color: #64748b;
+    text-align: center;
+}
+
+.favorites {
+    scroll-margin-top: 24px;
+    padding: 82px 5% 110px;
+}
+
+.section-kicker {
+    margin: 0 0 10px;
+    color: var(--accent);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.favorites h2 {
+    margin: 0;
+    color: var(--accent);
+    font-size: clamp(26px, 4vw, 36px);
+    letter-spacing: -0.03em;
+}
+
+.favorites p {
+    max-width: 540px;
+    margin: 9px 0 0;
     color: var(--text);
     font-size: 15px;
     line-height: 1.7;
+}
+
+.interest-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 20px;
+    margin-top: 42px;
+}
+
+.interest-card {
+    min-width: 0;
+    border: 1px solid var(--teal);
+    background: var(--background);
+}
+
+.interest-card img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+.interest-card h3 {
+    margin: 16px 16px 0;
+    color: var(--accent);
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.interest-card p {
+    margin: 6px 16px 18px;
+    color: var(--text);
+    font-size: 13px;
+    line-height: 1.5;
 }
 
 .compose-page {
@@ -305,7 +434,7 @@ main {
 }
 
 .back-link {
-    color: var(--accent);
+    color: var(--pulse);
     font-size: 15px;
     text-decoration: underline;
     text-underline-offset: 4px;
@@ -428,7 +557,7 @@ main {
 }
 
 .form-status.error {
-    color: #ffaaa3;
+    color: var(--pulse);
 }
 
 .inbox-page {
@@ -532,9 +661,9 @@ main {
 }
 
 .inbox-button.danger {
-    border-color: #ffaaa3;
+    border-color: var(--pulse);
     background: transparent;
-    color: #ffaaa3;
+    color: var(--pulse);
 }
 
 .inbox-button:hover,
@@ -551,7 +680,7 @@ main {
 }
 
 .inbox-status.error {
-    color: #ffaaa3;
+    color: var(--pulse);
 }
 
 #login-status {
@@ -607,7 +736,7 @@ main {
     }
 
     .profile-page,
-    .deep-interests,
+    .favorites,
     .commission-price {
         width: min(100% - 36px, 720px);
     }
@@ -686,8 +815,24 @@ main {
         font-size: 14px;
     }
 
-    .deep-interests {
-        padding: 18px 2% 52px;
+    .favorites {
+        padding: 58px 6% 72px;
+    }
+
+    .interest-gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+        margin-top: 30px;
+    }
+
+    .commission-inner {
+        width: calc(100% - 36px);
+        min-height: 260px;
+        padding: 52px 6% 64px;
+    }
+
+    .commission-lines {
+        width: 100%;
     }
 }
 
@@ -698,9 +843,13 @@ main {
     }
 
     .profile-page,
-    .deep-interests,
+    .favorites,
     .commission-price {
         width: calc(100% - 28px);
+    }
+
+    .commission-price {
+        width: 100%;
     }
 
     .profile-page {
@@ -709,6 +858,10 @@ main {
 
     .profile-intro {
         min-height: 125px;
+    }
+
+    .interest-gallery {
+        grid-template-columns: 1fr;
     }
 
     .profile-img {

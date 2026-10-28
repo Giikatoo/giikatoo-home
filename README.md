@@ -15,4 +15,7 @@ giikatoo-home/
 └── inbox.html                  letter receieving page 
 ```
 
+## CSS tips
+use class fade-on-scroll to make fade in-out transition
+
 ## Is using supabase and life has gotten much better.

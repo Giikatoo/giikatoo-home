@@ -28,6 +28,28 @@ body {
     font-family: var(--body);
 }
 
+.page-intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #0f172a;
+    z-index: 9999;
+    pointer-events: none;
+    
+    animation: fadeOutOverlay 1.0s ease-in-out forwards;
+}
+
+@keyframes fadeOutOverlay {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
 main {
     padding: 30px 0 0;
 }
@@ -268,6 +290,8 @@ main {
 }
 
 .commission-price {
+    position: relative;
+    isolation: isolate;
     scroll-margin-top: 24px;
     width: 100%;
     max-width: none;
@@ -278,10 +302,21 @@ main {
     transform-origin: left center;
 }
 
+.commission-price::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: url("../images/metro.png") center / cover no-repeat;
+    content: "";
+    mix-blend-mode: multiply;
+    opacity: 0.2;
+    pointer-events: none;
+}
+
 .ad-label {
     font-size: 10px;
     font-weight: 400;
-    color: var(--text);
+    color: var(--teal);
     letter-spacing: 0.2em;
 }
 .commission-inner {
@@ -333,7 +368,7 @@ th, td {
 
 th {
     font-size: 20px;
-    color: var(--teal);
+    color: var(--text);
 }
 
 .cms-section {
@@ -364,10 +399,6 @@ th {
     left: 4px;
     color: var(--teal);
     font-weight: bold;
-}
-
-.cms-list strong {
-    color: var(--teal);
 }
 
 .cms-footer-message {

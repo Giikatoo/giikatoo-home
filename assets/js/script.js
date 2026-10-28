@@ -1,5 +1,17 @@
 "use strict";
 
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+
+window.addEventListener('load', () => {
+    window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'instant'
+    });
+});
+
 const ageElement = document.getElementById("age");
 
 if (!(ageElement instanceof HTMLSpanElement)) {
@@ -46,3 +58,25 @@ if (months === 1) {
 }
 
 ageElement.textContent = `${years} years & ${months} & ${days}`;
+
+// Fades marked elements based on their viewport position.
+function initializeScrollFade() {
+    const fadeElements = document.querySelectorAll(".fade-on-scroll");
+    if (!("IntersectionObserver" in window)) {
+        fadeElements.forEach((element) => element.classList.add("is-visible"));
+        return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            entry.target.classList.toggle("is-visible", entry.isIntersecting);
+        });
+    }, {
+        threshold: 0.15,
+        rootMargin: "0px 0px -8% 0px"
+    });
+
+    fadeElements.forEach((element) => observer.observe(element));
+}
+
+initializeScrollFade();

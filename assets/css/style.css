@@ -107,22 +107,27 @@ main {
     z-index: 2;
 }
 
-/*
+/* Box keeps the source image ratio (2000x1500) so the art is never cropped */
 .profile-page::before {
     position: absolute;
     z-index: -1;
     top: -240px;
-    bottom: -6vw;
     left: 50%;
     width: 100vw;
+    max-width: 100vw;
+    aspect-ratio: 4 / 3;
     margin-left: -50vw;
-    background: url("../images/so-many-giikatoo.png") center / cover no-repeat;
+    background: url("../images/so-many-giikatoo.png") center / 100% 100% no-repeat;
     content: "";
     mix-blend-mode: multiply;
     opacity: 0.5;
     pointer-events: none;
 }
-*/
+
+html,
+body {
+    overflow-x: clip;
+}
 
 .profile-intro {
     display: flex;

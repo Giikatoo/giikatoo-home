@@ -13,7 +13,7 @@ if (!birthdateParts) {
     throw new Error('The age element must have a valid YYYY-MM-DD data-birthdate.');
 }
 
-const [_, year, month, day] = birthdateParts;
+const [, year, month, day] = birthdateParts;
 const birthday = new Date(Number(year), Number(month) - 1, Number(day));
 const today = new Date();
 

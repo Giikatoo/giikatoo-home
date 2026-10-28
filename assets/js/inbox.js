@@ -12,6 +12,7 @@ const signOutButton = document.getElementById("sign-out");
 const refreshButton = document.getElementById("refresh-letters");
 const lettersList = document.getElementById("letters-list");
 const status = document.getElementById("inbox-status");
+const signInHandler = typeof handleInboxSignIn === "function" ? handleInboxSignIn : null;
 
 if (!(loginPanel instanceof HTMLElement) ||
     !(loginMailbox instanceof HTMLElement) ||
@@ -155,14 +156,17 @@ loginForm.addEventListener("submit", async (event) => {
         return;
     }
 
-    const { error } = await client.auth.signInWithPassword({
-        email: email.value,
-        password: password.value
-    });
-    if (error) {
-        showStatus("รหัสผ่านไม่ถูกต้อง หรืออีเมลนี้ไม่มีสิทธิ์เข้าถึง", true);
+    if (!client || !signInHandler) {
+        showStatus("ยังไม่ได้เชื่อมต่อระบบเข้าสู่ระบบ", true);
         return;
     }
+
+    const result = await signInHandler(client, email.value, password.value, ownerUserId);
+    if (!result.ok) {
+        showStatus(result.message, true);
+        return;
+    }
+
     await startInbox();
 });
 

@@ -157,21 +157,24 @@ main {
     position: absolute;
     top: 50%;
     right: 100%;
-    width: 40px;
-    height: 24px;
-    margin-top: -12px;
+    width: 64px;
+    height: 38px;
+    margin-top: -19px;
     margin-right: 6px;
     fill: none;
     stroke: #ffffff;
     stroke-linecap: round;
-    stroke-width: 4;
+    stroke-linejoin: round;
+    stroke-width: 4.5;
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.7));
+    pointer-events: none;
     transition: none;
-    animation: mail-arrow-nudge 1s ease-in-out infinite;
+    animation: mail-arrow-nudge 0.9s ease-in-out infinite;
 }
 
 @keyframes mail-arrow-nudge {
-    0%, 100% { transform: translateX(-8px); }
-    50% { transform: translateX(6px); }
+    0%, 100% { transform: translateX(-14px); }
+    50% { transform: translateX(8px); }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -149,8 +149,39 @@ main {
     transition: transform 160ms ease;
 }
 
-.mail-icon-link:hover svg,
-.mail-icon-link:focus-visible svg {
+.mail-icon-link {
+    position: relative;
+}
+
+.mail-icon-link .mail-arrow {
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    width: 40px;
+    height: 24px;
+    margin-top: -12px;
+    margin-right: 6px;
+    fill: none;
+    stroke: #ffffff;
+    stroke-linecap: round;
+    stroke-width: 4;
+    transition: none;
+    animation: mail-arrow-nudge 1s ease-in-out infinite;
+}
+
+@keyframes mail-arrow-nudge {
+    0%, 100% { transform: translateX(-8px); }
+    50% { transform: translateX(6px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mail-icon-link .mail-arrow {
+        animation: none;
+    }
+}
+
+.mail-icon-link:hover svg:not(.mail-arrow),
+.mail-icon-link:focus-visible svg:not(.mail-arrow) {
     transform: translateY(-8px);
 }
 
@@ -346,7 +377,7 @@ main {
 .commission-price p {
     max-width: 540px;
     margin: 9px 0 0;
-    font-size: 15px;
+    font-size: px;
     line-height: 1.7;
 }
 

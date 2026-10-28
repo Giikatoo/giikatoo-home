@@ -278,6 +278,12 @@ main {
     transform-origin: left center;
 }
 
+.ad-label {
+    font-size: 10px;
+    font-weight: 400;
+    color: var(--text);
+    letter-spacing: 0.2em;
+}
 .commission-inner {
     position: relative;
     width: min(1120px, calc(100% - 88px));

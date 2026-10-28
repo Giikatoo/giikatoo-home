@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Private inbox</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+    <script src="assets/js/inbox.js" defer></script>
+</head>
+<body>
+    <main class="inbox-page">
+        <header class="inbox-header">
+            <div>
+                <p class="compose-kicker">private inbox</p>
+                <h1>Letters</h1>
+            </div>
+            <button id="sign-out" class="inbox-button secondary" type="button" hidden>Sign out</button>
+        </header>
+
+        <section id="login-panel" class="inbox-panel" aria-labelledby="login-title">
+            <h2 id="login-title">Owner sign in</h2>
+            <p>หน้านี้สำหรับเจ้าของเว็บเท่านั้น</p>
+            <form id="login-form">
+                <label for="email">Email</label>
+                <input id="email" type="email" autocomplete="email" required>
+                <label for="password">Password</label>
+                <input id="password" type="password" autocomplete="current-password" required>
+                <button class="inbox-button" type="submit">Sign in</button>
+            </form>
+        </section>
+
+        <section id="letters-panel" class="inbox-panel" hidden aria-labelledby="letters-title">
+            <div class="inbox-panel-heading">
+                <h2 id="letters-title">Messages</h2>
+                <button id="refresh-letters" class="inbox-button secondary" type="button">Refresh</button>
+            </div>
+            <p id="inbox-status" class="inbox-status" role="status" aria-live="polite"></p>
+            <div id="letters-list" class="letters-list"></div>
+        </section>
+    </main>
+</body>
+</html>

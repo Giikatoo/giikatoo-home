@@ -1,6 +1,6 @@
 # Giikatoo — personal page
 
-หน้าแนะนำตัวแนวสมุดสเก็ตช์ วางข้อมูลโปรไฟล์และ Social & Contacts ไว้ทางซ้าย และหน้าต่าง Hobby & Interest ไว้ทางขวา ใช้ HTML, CSS และ JavaScript ธรรมดา
+หน้าแนะนำตัวแนวสมุดสเก็ตช์ วางข้อมูลโปรไฟล์และ Social & Contacts ไว้ทางซ้าย และหน้าต่าง Hobby & Interest ไว้ทางขวา ใช้ HTML, CSS และ JavaScript ธรรมดา มีหน้า `compose.html` สำหรับส่งข้อความ anonymous
 
 ## เปิดดู
 
@@ -51,15 +51,24 @@
 - `.profile-paper`, `.social-links` และ `.desktop-window` ใช้ปรับหน้าตาแต่ละส่วน
 - ลิงก์ Social ใช้ตัวอักษรขนาด 18px ตัวหนา และมีเส้นใต้เพื่อให้เห็นว่ากดได้; ปรับรูปแบบได้ที่ `.social-links a`
 
+## Anonymous letters และ Supabase
+
+ไอคอนซองจดหมายด้านบนเป็นลิงก์ไป [compose.html](./compose.html) โดยพื้นที่กดจำกัดอยู่ที่ไอคอน ไม่รวมข้อความกำกับ แบบฟอร์มจะตรวจข้อความและส่งไปยัง Supabase เมื่อใส่ Project URL กับ `anon` key แล้ว
+
+ทำตามขั้นตอนฐานข้อมูล, RLS และการตั้งค่า key ใน [docs/SUPABASE-SETUP.md](./docs/SUPABASE-SETUP.md) ก่อนเปิดใช้จริง หากยังไม่ตั้งค่า หน้าเขียนข้อความจะแจ้งสถานะอย่างชัดเจนและจะไม่ทำทีว่าบันทึกสำเร็จ
+
 ## โครงสร้าง
 
 ```text
 giikatoo-home/
 ├── index.html             # เนื้อหาโปรไฟล์และลิงก์แพลตฟอร์ม
+├── compose.html           # หน้าเขียนข้อความ anonymous
+├── inbox.html              # หน้ากล่องจดหมายส่วนตัวของเจ้าของ
 ├── assets/
 │   ├── css/style.css       # รูปแบบหน้าเว็บและ responsive layout
 │   ├── images/             # ใส่ภาพของตัวเองได้
-│   └── js/script.js        # คำนวณอายุจากวันเกิด
+│   └── js/                 # คำนวณอายุ ส่งข้อความ และอ่าน inbox
+├── docs/SUPABASE-SETUP.md  # วิธีสร้างตารางและ RLS
 ├── src/script.ts           # ตัวอย่าง TypeScript เก่าที่ยังไม่ได้ใช้
 └── docs/FEATURE-PLAN.md    # แนวทางฟีเจอร์สำหรับโปรเจกต์ต่อยอด
 ```

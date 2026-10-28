@@ -32,6 +32,13 @@ main {
     padding: 30px 0 0;
 }
 
+.secret-message {
+    margin: 0;
+    color: #ffffff00;
+    font-size: 14px;
+    text-align: center;
+}
+
 .page-contents {
     display: flex;
     flex-wrap: wrap;
@@ -327,7 +334,6 @@ th {
     margin-bottom: 24px;
 }
 
-/* หัวข้อ (Details / Terms of Service) */
 .cms-title {
     font-size: 1.25rem;
     font-weight: 700;
@@ -355,13 +361,11 @@ th {
 }
 
 .cms-list strong {
-    color: #1e293b;
+    color: var(--teal);
 }
 
-/* ข้อความปิดท้ายล่างสุด */
 .cms-footer-message {
-    margin-top: 20px;
-    color: #64748b;
+    color: var(--pulse);
     text-align: center;
 }
 

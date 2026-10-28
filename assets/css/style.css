@@ -51,6 +51,7 @@ body {
 }
 
 main {
+    overflow-x: clip;
     padding: 30px 0 0;
 }
 
@@ -95,14 +96,25 @@ main {
 }
 
 .profile-page {
+    position: relative;
     scroll-margin-top: 24px;
-    padding: 35px 7% 0;
+    padding: 35px 7% 4vw;
+}
+
+.profile-intro,
+.profile-layout {
+    position: relative;
+    z-index: 2;
 }
 
 .profile-page::before {
     position: absolute;
     z-index: -1;
-    inset: 0;
+    top: -240px;
+    bottom: -6vw;
+    left: 50%;
+    width: 100vw;
+    margin-left: -50vw;
     background: url("../images/so-many-giikatoo.png") center / cover no-repeat;
     content: "";
     mix-blend-mode: multiply;

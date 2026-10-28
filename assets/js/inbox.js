@@ -12,6 +12,7 @@ const signOutButton = document.getElementById("sign-out");
 const refreshButton = document.getElementById("refresh-letters");
 const lettersList = document.getElementById("letters-list");
 const status = document.getElementById("inbox-status");
+const loginStatus = document.getElementById("login-status");
 const signInHandler = typeof handleInboxSignIn === "function" ? handleInboxSignIn : null;
 
 if (!(loginPanel instanceof HTMLElement) ||
@@ -21,14 +22,15 @@ if (!(loginPanel instanceof HTMLElement) ||
     !(signOutButton instanceof HTMLButtonElement) ||
     !(refreshButton instanceof HTMLButtonElement) ||
     !(lettersList instanceof HTMLDivElement) ||
-    !(status instanceof HTMLParagraphElement)) {
+    !(status instanceof HTMLParagraphElement) ||
+    !(loginStatus instanceof HTMLParagraphElement)) {
     throw new Error("The inbox is missing a required element.");
 }
 
 // Updates the inbox status message.
-function showStatus(message, isError) {
-    status.textContent = message;
-    status.className = isError ? "inbox-status error" : "inbox-status";
+function showStatus(message, isError, target = status) {
+    target.textContent = message;
+    target.className = isError ? "inbox-status error" : "inbox-status";
 }
 
 // Shows the owner login form.
@@ -157,16 +159,17 @@ loginForm.addEventListener("submit", async (event) => {
     }
 
     if (!client || !signInHandler) {
-        showStatus("ยังไม่ได้เชื่อมต่อระบบเข้าสู่ระบบ", true);
+        showStatus("ยังไม่ได้เชื่อมต่อระบบเข้าสู่ระบบ", true, loginStatus);
         return;
     }
 
     const result = await signInHandler(client, email.value, password.value, ownerUserId);
     if (!result.ok) {
-        showStatus(result.message, true);
+        showStatus(result.message, true, loginStatus);
         return;
     }
 
+    showStatus("", false, loginStatus);
     await startInbox();
 });
 

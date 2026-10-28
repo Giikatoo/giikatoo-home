@@ -7,7 +7,7 @@ async function handleInboxSignIn(client, email, password, ownerUserId) {
         if (error) {
             return {
                 ok: false,
-                message: "รหัสผ่านไม่ถูกต้อง หรืออีเมลนี้ไม่มีสิทธิ์เข้าถึง"
+                message: "YOU ARE NOT THE REAL GIIKATOO, NOW GET OUT"
             };
         }
 
@@ -16,7 +16,7 @@ async function handleInboxSignIn(client, email, password, ownerUserId) {
             await client.auth.signOut();
             return {
                 ok: false,
-                message: "อีเมลนี้ไม่มีสิทธิ์เข้าถึง"
+                message: "YOU ARE NOT THE REAL GIIKATOO, NOW GET OUT"
             };
         }
 
@@ -25,7 +25,7 @@ async function handleInboxSignIn(client, email, password, ownerUserId) {
         console.error(error);
         return {
             ok: false,
-            message: "ไม่สามารถเข้าสู่ระบบได้ กรุณาลองใหม่"
+            message: "YOU ARE NOT THE REAL GIIKATOO, NOW GET OUT"
         };
     }
 }

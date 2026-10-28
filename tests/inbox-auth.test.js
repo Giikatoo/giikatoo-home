@@ -16,7 +16,7 @@ describe("handleInboxSignIn", () => {
             handleInboxSignIn(client, "owner@example.com", "wrong", ownerUserId)
         ).resolves.toEqual({
             ok: false,
-            message: "รหัสผ่านไม่ถูกต้อง หรืออีเมลนี้ไม่มีสิทธิ์เข้าถึง"
+            message: "YOU ARE NOT THE REAL GIIKATOO, NOW GET OUT"
         });
         expect(client.auth.signInWithPassword).toHaveBeenCalledWith({
             email: "owner@example.com",
@@ -39,7 +39,7 @@ describe("handleInboxSignIn", () => {
             handleInboxSignIn(client, "other@example.com", "password", ownerUserId)
         ).resolves.toEqual({
             ok: false,
-            message: "อีเมลนี้ไม่มีสิทธิ์เข้าถึง"
+            message: "YOU ARE NOT THE REAL GIIKATOO, NOW GET OUT"
         });
         expect(client.auth.signOut).toHaveBeenCalledTimes(1);
     });

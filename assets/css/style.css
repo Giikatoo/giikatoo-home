@@ -507,6 +507,10 @@ main {
     color: #ffaaa3;
 }
 
+#login-status {
+    margin-bottom: 0;
+}
+
 .letters-list {
     display: grid;
     gap: 14px;

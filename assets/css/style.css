@@ -5,7 +5,7 @@
     --accent: #92ebe5;
     --teal: #387D78;
     --pulse: #E67E5C;
-    --darkpulse: #b03412;
+    --dark: #141414;
     --body: 'Noto Sans Thai', 'Noto Sans', 'Trebuchet MS', Arial, sans-serif;
     --profile-top-gap: 30px;
     --hobby-top-offset: 90px;
@@ -99,6 +99,17 @@ main {
     padding: 35px 7% 0;
 }
 
+.profile-page::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: url("../images/so-many-giikatoo.png") center / cover no-repeat;
+    content: "";
+    mix-blend-mode: multiply;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
 .profile-intro {
     display: flex;
     min-height: 168px;
@@ -166,7 +177,6 @@ main {
     stroke-linecap: round;
     stroke-linejoin: round;
     stroke-width: 4.5;
-    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.7));
     pointer-events: none;
     transition: none;
     animation: mail-arrow-nudge 0.9s ease-in-out infinite;
@@ -210,7 +220,6 @@ main {
     min-height: 180px;
     padding: 25px 28px;
     border: 1px solid var(--teal);
-    background: var(--background);
 }
 
 .profile-paper h1 {
@@ -276,8 +285,8 @@ main {
 .desktop-window {
     min-height: 100px;
     border: 1px solid var(--teal);
-    background: var(--background);
     transform: translateY(calc(-1 * var(--hobby-top-offset)));
+    background: var(--dark);
 }
 
 .window-titlebar {
@@ -397,7 +406,7 @@ th, td {
     padding: 12px;
     text-align: left;
     border: none;
-    color: var(--background);
+    color: var(--dark);
 }
 
 th {

@@ -10,6 +10,7 @@ const lettersPanel = document.getElementById("letters-panel");
 const loginForm = document.getElementById("login-form");
 const signOutButton = document.getElementById("sign-out");
 const refreshButton = document.getElementById("refresh-letters");
+const markAllReadButton = document.getElementById("mark-all-read");
 const lettersList = document.getElementById("letters-list");
 const status = document.getElementById("inbox-status");
 const loginStatus = document.getElementById("login-status");
@@ -21,6 +22,7 @@ if (!(loginPanel instanceof HTMLElement) ||
     !(loginForm instanceof HTMLFormElement) ||
     !(signOutButton instanceof HTMLButtonElement) ||
     !(refreshButton instanceof HTMLButtonElement) ||
+    !(markAllReadButton instanceof HTMLButtonElement) ||
     !(lettersList instanceof HTMLDivElement) ||
     !(status instanceof HTMLParagraphElement) ||
     !(loginStatus instanceof HTMLParagraphElement)) {
@@ -76,6 +78,7 @@ function renderLetters(letters) {
 
         const message = document.createElement("p");
         message.textContent = letter.message;
+        message.title = letter.message;
 
         const actions = document.createElement("div");
         actions.className = "letter-actions";
@@ -149,6 +152,21 @@ async function deleteLetter(id) {
     await loadLetters();
 }
 
+// Marks every owner message as read.
+async function markAllAsRead() {
+    const { error } = await client
+        .from("letters")
+        .update({ is_read: true })
+        .eq("recipient_id", ownerUserId)
+        .eq("is_read", false);
+    if (error) {
+        showStatus("ไม่สามารถทำเครื่องหมายข้อความทั้งหมดได้", true);
+        console.error(error);
+        return;
+    }
+    await loadLetters();
+}
+
 // Signs the owner into Supabase.
 loginForm.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -182,6 +200,12 @@ signOutButton.addEventListener("click", async () => {
 // Refreshes the message list.
 refreshButton.addEventListener("click", () => loadLetters().catch((error) => {
     showStatus("ไม่สามารถโหลดข้อความได้", true);
+    console.error(error);
+}));
+
+// Marks all unread messages as read.
+markAllReadButton.addEventListener("click", () => markAllAsRead().catch((error) => {
+    showStatus("ไม่สามารถทำเครื่องหมายข้อความทั้งหมดได้", true);
     console.error(error);
 }));
 

@@ -578,6 +578,13 @@ th {
     gap: 20px;
 }
 
+.inbox-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
 .inbox-header h1 {
     margin: 0;
     color: var(--text);
@@ -693,11 +700,16 @@ th {
 
 .letters-list {
     display: grid;
-    gap: 14px;
+    gap: 6px;
 }
 
 .letter {
-    padding: 18px;
+    display: grid;
+    grid-template-columns: minmax(120px, 150px) minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
+    padding: 8px 10px;
     border: 1px solid var(--teal);
 }
 
@@ -713,7 +725,8 @@ th {
 }
 
 .letter p {
-    margin: 12px 0;
+    min-width: 0;
+    margin: 0;
     white-space: pre-wrap;
     overflow-wrap: anywhere;
 }
@@ -726,6 +739,8 @@ th {
 
 .letter-actions .inbox-button {
     margin-top: 0;
+    padding: 6px 9px;
+    font-size: 12px;
 }
 
 @media (max-width: 700px) {
@@ -910,6 +925,31 @@ th {
 
     .inbox-panel {
         padding: 20px;
+    }
+
+    .inbox-panel-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .inbox-actions {
+        justify-content: flex-start;
+    }
+
+    .letter {
+        grid-template-columns: 1fr auto;
+        gap: 5px 10px;
+    }
+
+    .letter time,
+    .letter p {
+        grid-column: 1;
+    }
+
+    .letter-actions {
+        grid-column: 2;
+        grid-row: 1 / span 2;
+        flex-direction: column;
     }
 
     .login-mailbox {

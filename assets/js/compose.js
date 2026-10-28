@@ -28,9 +28,9 @@ form.addEventListener("submit", async (event) => {
 
     const message = messageInput.value.trim();
 
-    if (message.length < 1) {
+    if (message.length < 3) {
         status.className = "form-status error";
-        status.textContent = "Please write a message before sending.";
+        status.textContent = "Please write at least 3 characters.";
         messageInput.focus();
         return;
     }

@@ -38,7 +38,10 @@
         <section id="letters-panel" class="inbox-panel" hidden aria-labelledby="letters-title">
             <div class="inbox-panel-heading">
                 <h2 id="letters-title">Messages</h2>
-                <button id="refresh-letters" class="inbox-button secondary" type="button">Refresh</button>
+                <div class="inbox-actions">
+                    <button id="mark-all-read" class="inbox-button secondary" type="button">Mark all as read</button>
+                    <button id="refresh-letters" class="inbox-button secondary" type="button">Refresh</button>
+                </div>
             </div>
             <p id="inbox-status" class="inbox-status" role="status" aria-live="polite"></p>
             <div id="letters-list" class="letters-list"></div>

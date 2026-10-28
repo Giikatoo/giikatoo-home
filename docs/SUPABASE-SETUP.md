@@ -22,7 +22,6 @@ create table public.letters (
   message text not null check (char_length(message) between 1 and 500),
   created_at timestamptz not null default now(),
   is_read boolean not null default false,
-  is_archived boolean not null default false
 );
 
 alter table public.letters enable row level security;
@@ -86,7 +85,7 @@ const ownerUserId = "YOUR_OWNER_USER_ID";
 1. เปิด `inbox.html`
 2. เข้าสู่ระบบด้วยอีเมลและรหัสผ่านของบัญชีเจ้าของ
 3. ระบบตรวจ session และ User ID ก่อนแสดงจดหมาย
-4. อ่าน, ทำเครื่องหมายอ่านแล้ว, เก็บถาวร หรือลบจดหมายได้
+4. อ่าน, ทำเครื่องหมายอ่านแล้ว หรือลบจดหมายได้
 
 หน้าสาธารณะและหน้า `compose.html` ไม่มีช่อง login ผู้ส่งยังส่งข้อความได้โดยไม่ต้องมีบัญชี
 
@@ -97,5 +96,11 @@ const ownerUserId = "YOUR_OWNER_USER_ID";
 - ผู้เยี่ยมชมต้องส่งจดหมายได้ แต่เรียกอ่านตาราง `letters` ไม่ได้
 - อย่าใช้การซ่อน URL, รหัสผ่านใน JavaScript หรือชื่อไฟล์ลับแทน authentication
 - อย่า commit password, `service_role` key หรือ secret ใด ๆ
+
+หากตารางเดิมมีคอลัมน์ `is_archived` อยู่แล้ว ให้ลบออกด้วย SQL นี้:
+
+```sql
+alter table public.letters drop column if exists is_archived;
+```
 
 ถ้าไม่ต้องการทำหน้า inbox เอง สามารถเข้า **Supabase Dashboard > Table Editor > letters** ด้วยบัญชีเจ้าของได้เช่นกัน

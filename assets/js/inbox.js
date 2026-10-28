@@ -22,23 +22,27 @@ if (!(loginPanel instanceof HTMLElement) ||
     throw new Error("The inbox is missing a required element.");
 }
 
+// Updates the inbox status message.
 function showStatus(message, isError) {
     status.textContent = message;
     status.className = isError ? "inbox-status error" : "inbox-status";
 }
 
+// Shows the owner login form.
 function showLogin() {
     loginPanel.hidden = false;
     lettersPanel.hidden = true;
     signOutButton.hidden = true;
 }
 
+// Shows the private message list.
 function showInbox() {
     loginPanel.hidden = true;
     lettersPanel.hidden = false;
     signOutButton.hidden = false;
 }
 
+// Formats a message timestamp.
 function formatDate(value) {
     return new Intl.DateTimeFormat("th-TH", {
         dateStyle: "medium",
@@ -46,6 +50,7 @@ function formatDate(value) {
     }).format(new Date(value));
 }
 
+// Renders messages and their actions.
 function renderLetters(letters) {
     lettersList.replaceChildren();
     if (letters.length === 0) {
@@ -71,26 +76,23 @@ function renderLetters(letters) {
         readButton.className = "inbox-button secondary";
         readButton.type = "button";
         readButton.textContent = letter.is_read ? "Mark unread" : "Mark read";
+        // Toggles the message read state.
         readButton.addEventListener("click", () => updateLetter(letter, { is_read: !letter.is_read }));
-
-        const archiveButton = document.createElement("button");
-        archiveButton.className = "inbox-button secondary";
-        archiveButton.type = "button";
-        archiveButton.textContent = "Archive";
-        archiveButton.addEventListener("click", () => updateLetter(letter, { is_archived: true }));
 
         const deleteButton = document.createElement("button");
         deleteButton.className = "inbox-button danger";
         deleteButton.type = "button";
         deleteButton.textContent = "Delete";
+        // Deletes the selected message.
         deleteButton.addEventListener("click", () => deleteLetter(letter.id));
 
-        actions.append(readButton, archiveButton, deleteButton);
+        actions.append(readButton, deleteButton);
         article.append(meta, message, actions);
         lettersList.append(article);
     }
 }
 
+// Creates the configured Supabase client.
 async function getClient() {
     if (supabaseUrl.includes("YOUR_PROJECT_ID") ||
         supabaseAnonKey.includes("YOUR_SUPABASE_ANON_KEY") ||
@@ -103,13 +105,13 @@ async function getClient() {
 
 let client;
 
+// Loads the owner's active messages.
 async function loadLetters() {
     showStatus("Loading...", false);
     const { data, error } = await client
         .from("letters")
-        .select("id, message, created_at, is_read, is_archived, recipient_id")
+        .select("id, message, created_at, is_read, recipient_id")
         .eq("recipient_id", ownerUserId)
-        .eq("is_archived", false)
         .order("created_at", { ascending: false });
 
     if (error) {
@@ -118,6 +120,7 @@ async function loadLetters() {
     renderLetters(data || []);
 }
 
+// Updates a message field.
 async function updateLetter(letter, changes) {
     const { error } = await client.from("letters").update(changes).eq("id", letter.id);
     if (error) {
@@ -128,6 +131,7 @@ async function updateLetter(letter, changes) {
     await loadLetters();
 }
 
+// Deletes a message after confirmation.
 async function deleteLetter(id) {
     if (!window.confirm("Delete this message?")) {
         return;
@@ -141,6 +145,7 @@ async function deleteLetter(id) {
     await loadLetters();
 }
 
+// Signs the owner into Supabase.
 loginForm.addEventListener("submit", async (event) => {
     event.preventDefault();
     const email = document.getElementById("email");
@@ -160,16 +165,19 @@ loginForm.addEventListener("submit", async (event) => {
     await startInbox();
 });
 
+// Signs the owner out of Supabase.
 signOutButton.addEventListener("click", async () => {
     await client.auth.signOut();
     showLogin();
 });
 
+// Refreshes the message list.
 refreshButton.addEventListener("click", () => loadLetters().catch((error) => {
     showStatus("ไม่สามารถโหลดข้อความได้", true);
     console.error(error);
 }));
 
+// Verifies the owner and starts the inbox.
 async function startInbox() {
     const { data: { session } } = await client.auth.getSession();
     if (!session || session.user.id !== ownerUserId) {
@@ -182,11 +190,14 @@ async function startInbox() {
     await loadLetters();
 }
 
+// Initializes the private inbox.
 getClient()
+    // Stores the client and starts the inbox.
     .then((configuredClient) => {
         client = configuredClient;
         return startInbox();
     })
+    // Reports initialization errors.
     .catch((error) => {
         showStatus("ยังไม่ได้ตั้งค่า Supabase inbox", true);
         console.error(error);

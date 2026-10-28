@@ -15,10 +15,12 @@ if (!(form instanceof HTMLFormElement) ||
     throw new Error("The anonymous message form is missing a required element.");
 }
 
+// Updates the message character count.
 messageInput.addEventListener("input", () => {
     count.textContent = String(messageInput.value.length);
 });
 
+// Validates and sends the anonymous message.
 form.addEventListener("submit", async (event) => {
     event.preventDefault();
     status.className = "form-status";

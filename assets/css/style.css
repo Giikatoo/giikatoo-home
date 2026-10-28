@@ -4,6 +4,7 @@
     --text: #ffffff;
     --accent: #92ebe5;
     --teal: #387D78;
+    --pulse: #ff6f22;
     --body: 'Trebuchet MS', Arial, sans-serif;
     --profile-top-gap: 30px;
     --hobby-top-offset: 90px;
@@ -30,13 +31,36 @@ main {
     padding: 46px 0 0;
 }
 
+.page-contents {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 28px;
+    width: min(1120px, calc(100% - 88px));
+    margin: 0 auto 34px;
+    padding: 0 7%;
+}
+
+.page-contents a {
+    color: var(--accent);
+    font-size: 15px;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.page-contents a:hover,
+.page-contents a:focus-visible {
+    color: var(--text);
+}
+
 .profile-page,
-.deep-interests {
+.deep-interests,
+.commission-price {
     width: min(1120px, calc(100% - 88px));
     margin: 0 auto;
 }
 
 .profile-page {
+    scroll-margin-top: 24px;
     padding: 42px 7% 0;
 }
 
@@ -231,6 +255,7 @@ main {
 }
 
 .deep-interests {
+    scroll-margin-top: 24px;
     padding: 20px 4% 72px;
     border-top: 2px solid var(--accent);
 }
@@ -244,6 +269,28 @@ main {
 }
 
 .deep-interests p {
+    max-width: 540px;
+    margin: 9px 0 0;
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.commission-price {
+    scroll-margin-top: 24px;
+    padding: 20px 4% 72px;
+    border-top: 2px solid var(--accent);
+}
+
+.commission-price h2 {
+    margin: 0;
+    color: var(--accent);
+    font-size: clamp(26px, 4vw, 36px);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+}
+
+.commission-price p {
     max-width: 540px;
     margin: 9px 0 0;
     color: var(--text);
@@ -522,7 +569,9 @@ main {
 }
 
 .letter.unread {
-    border-color: var(--accent);
+    background: var(--background);
+    border-color: var(--pulse);
+    border: 3px solid var(--pulse);
 }
 
 .letter time {
@@ -558,8 +607,15 @@ main {
     }
 
     .profile-page,
-    .deep-interests {
+    .deep-interests,
+    .commission-price {
         width: min(100% - 36px, 720px);
+    }
+
+    .page-contents {
+        width: calc(100% - 36px);
+        margin-bottom: 24px;
+        padding: 0;
     }
 
     .profile-page {
@@ -642,7 +698,8 @@ main {
     }
 
     .profile-page,
-    .deep-interests {
+    .deep-interests,
+    .commission-price {
         width: calc(100% - 28px);
     }
 

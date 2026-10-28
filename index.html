@@ -11,7 +11,13 @@
 </head>
 <body>
     <main>
-        <section class="profile-page" id="home" aria-label="Personal profile">
+        <nav class="page-contents" aria-label="Page contents">
+            <a href="#profile">profile</a>
+            <a href="#specific-interests">some specific interests</a>
+            <a href="#commission-price">commission price</a>
+        </nav>
+
+        <section class="profile-page" id="profile" aria-label="Personal profile">
             <header class="profile-intro">
                 <div class="avatar-doodle" role="img">
                     <img src="assets/images/giikatoo-pfp.png" alt="Giikatoo pfp" class="profile-img">
@@ -66,9 +72,14 @@
             </div>
         </section>
 
-        <section class="deep-interests section-rule" aria-labelledby="deep-interests-title">
+        <section class="deep-interests section-rule" id="specific-interests" aria-labelledby="deep-interests-title">
             <h2 id="deep-interests-title">Some of my specific interests</h2>
             <p>Art, technology, games, and all the tiny details that make the world interesting.</p>
+        </section>
+
+        <section class="commission-price section-rule" id="commission-price" aria-labelledby="commission-price-title">
+            <h2 id="commission-price-title">Commission price</h2>
+            <p>Commission details will be added here.</p>
         </section>
 
     </main>

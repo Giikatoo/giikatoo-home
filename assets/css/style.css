@@ -92,7 +92,7 @@ main {
 
 .mail-icon-link:hover svg,
 .mail-icon-link:focus-visible svg {
-    transform: translateY(-3px);
+    transform: translateY(-8px);
 }
 
 .mail-icon-link:focus-visible,
@@ -267,7 +267,6 @@ main {
 .compose-card {
     margin-top: 48px;
     padding: clamp(28px, 6vw, 58px);
-    border: 1px solid var(--teal);
     background: var(--background);
 }
 
@@ -407,9 +406,24 @@ main {
 }
 
 .inbox-panel {
+    position: relative;
     margin-top: 32px;
     padding: 28px;
     border: 1px solid var(--teal);
+}
+
+.login-mailbox {
+    position: absolute;
+    top: -131.5px;
+    right: 20px;
+    width: 150px;
+    pointer-events: none;
+}
+
+.mailbox-img {
+    display: block;
+    width: 100%;
+    height: auto;
 }
 
 .inbox-panel h2 {
@@ -678,6 +692,12 @@ main {
 
     .inbox-panel {
         padding: 20px;
+    }
+
+    .login-mailbox {
+        top: -62px;
+        right: 8px;
+        width: 115px;
     }
 }
 

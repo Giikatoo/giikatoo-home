@@ -13,15 +13,17 @@
     <main class="inbox-page">
         <header class="inbox-header">
             <div>
-                <p class="compose-kicker">private inbox</p>
-                <h1>Letters</h1>
+                <p class="compose-kicker">เห้ย เข้ามาดูไร ออกไปนะ</p>
+                <h1>Mailbox</h1>
             </div>
             <button id="sign-out" class="inbox-button secondary" type="button" hidden>Sign out</button>
         </header>
 
         <section id="login-panel" class="inbox-panel" aria-labelledby="login-title">
-            <h2 id="login-title">Owner sign in</h2>
-            <p>หน้านี้สำหรับเจ้าของเว็บเท่านั้น</p>
+            <div id="login-mailbox" class="login-mailbox" aria-hidden="true">
+                <img src="assets/images/mailbox.png" alt="" class="mailbox-img">
+            </div>
+            <h2 id="login-title">Only for Giikatoo</h2>
             <form id="login-form">
                 <label for="email">Email</label>
                 <input id="email" type="email" autocomplete="email" required>

@@ -30,14 +30,14 @@ form.addEventListener("submit", async (event) => {
 
     if (message.length < 1) {
         status.className = "form-status error";
-        status.textContent = "กรุณาเขียนข้อความก่อนส่ง";
+        status.textContent = "Please write a message before sending.";
         messageInput.focus();
         return;
     }
 
     if (supabaseUrl.includes("YOUR_PROJECT_ID") || supabaseAnonKey.includes("YOUR_SUPABASE_ANON_KEY")) {
         status.className = "form-status error";
-        status.textContent = "ยังไม่ได้ตั้งค่า Supabase";
+        status.textContent = "Supabase is not configured.";
         return;
     }
 
@@ -47,7 +47,7 @@ form.addEventListener("submit", async (event) => {
     }
 
     submitButton.disabled = true;
-    submitButton.textContent = "กำลังส่ง...";
+    submitButton.textContent = "sending...";
 
     try {
         const response = await fetch(`${supabaseUrl}/rest/v1/letters`, {
@@ -70,11 +70,11 @@ form.addEventListener("submit", async (event) => {
         form.reset();
         count.textContent = "0";
         status.className = "form-status success";
-        status.textContent = "Message sent successfully. Thank you!";
+        status.textContent = "Message sent successfully. Thank you ! ! !";
     } catch (error) {
         console.error(error);
         status.className = "form-status error";
-        status.textContent = "Failed. Please try again.";
+        status.textContent = "Failed. Please try again. TT";
     } finally {
         submitButton.disabled = false;
         submitButton.textContent = "Send";

@@ -5,6 +5,7 @@ const supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYm
 const ownerUserId = "e8715b3f-3d3b-468d-b02f-aa6c94c54ebb";
 
 const loginPanel = document.getElementById("login-panel");
+const loginMailbox = document.getElementById("login-mailbox");
 const lettersPanel = document.getElementById("letters-panel");
 const loginForm = document.getElementById("login-form");
 const signOutButton = document.getElementById("sign-out");
@@ -13,6 +14,7 @@ const lettersList = document.getElementById("letters-list");
 const status = document.getElementById("inbox-status");
 
 if (!(loginPanel instanceof HTMLElement) ||
+    !(loginMailbox instanceof HTMLElement) ||
     !(lettersPanel instanceof HTMLElement) ||
     !(loginForm instanceof HTMLFormElement) ||
     !(signOutButton instanceof HTMLButtonElement) ||
@@ -31,6 +33,7 @@ function showStatus(message, isError) {
 // Shows the owner login form.
 function showLogin() {
     loginPanel.hidden = false;
+    loginMailbox.hidden = false;
     lettersPanel.hidden = true;
     signOutButton.hidden = true;
 }
@@ -38,6 +41,7 @@ function showLogin() {
 // Shows the private message list.
 function showInbox() {
     loginPanel.hidden = true;
+    loginMailbox.hidden = true;
     lettersPanel.hidden = false;
     signOutButton.hidden = false;
 }
@@ -54,7 +58,7 @@ function formatDate(value) {
 function renderLetters(letters) {
     lettersList.replaceChildren();
     if (letters.length === 0) {
-        showStatus("ยังไม่มีข้อความ", false);
+        showStatus("ยังไม่มีข้อความจ้า", false);
         return;
     }
 
@@ -131,11 +135,8 @@ async function updateLetter(letter, changes) {
     await loadLetters();
 }
 
-// Deletes a message after confirmation.
+// Deletes the selected message.
 async function deleteLetter(id) {
-    if (!window.confirm("Delete this message?")) {
-        return;
-    }
     const { error } = await client.from("letters").delete().eq("id", id);
     if (error) {
         showStatus("ไม่สามารถลบข้อความได้", true);
@@ -159,7 +160,7 @@ loginForm.addEventListener("submit", async (event) => {
         password: password.value
     });
     if (error) {
-        showStatus("เข้าสู่ระบบไม่สำเร็จ", true);
+        showStatus("รหัสผ่านไม่ถูกต้อง หรืออีเมลนี้ไม่มีสิทธิ์เข้าถึง", true);
         return;
     }
     await startInbox();
